@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 
 
+
 export default {
   
   content: [
@@ -25,10 +26,6 @@ export default {
         'base-card': '#f3f2f2',
         'background': '#fafafa',
         'white': '#ffffff',
-    },
-    fontFamily: {
-      sans: ['Baloo 2', 'sans-serif'],
-      serif: ['Roboto', 'sans-serif'],
     },
     extend: {},
   },

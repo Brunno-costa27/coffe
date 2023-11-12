@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .font-baloo-2 {
+    font-family: 'Baloo 2', sans;
+  }
+}
+
 * {
     margin: 0;
     padding: 0;
