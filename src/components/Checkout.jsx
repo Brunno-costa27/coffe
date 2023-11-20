@@ -8,7 +8,6 @@ export function Checkout() {
 
    return (
        <>
-           <Header/>
            <div className="flex px-40 gap-3 w-full">
                <div className="flex flex-col  gap-3 w-full">
                    <div className="flex justify-normal gap-2 p-10 flex-col bg-base-card rounded-md">

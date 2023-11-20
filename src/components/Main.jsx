@@ -1,10 +1,12 @@
 import coffeImg from '../assets/coffe.svg'
 import {Coffee, Package, ShoppingCart, Timer} from 'phosphor-react'
-
+import { Products } from './Products'
 
 export function Main() {
 
     return (
+
+        <>
         <main className="flex flex-col justify-center items-center mt-24 gap-14 px-40 lg:flex lg:flex-row lg:justify-between lg:items-start lg:px-40 lg:mt-24 lg:gap-14">
             <div className='w-full'>
                 <div className='flex-col gap-4'>
@@ -52,5 +54,8 @@ export function Main() {
                     <img src={coffeImg} alt="Imagem de um café" />
             </div>
         </main>
+
+        <Products />
+        </>
     )
 }

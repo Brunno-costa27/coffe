@@ -1,11 +1,26 @@
+import { useContext, useState } from 'react'
 import coffe from '../assets/coffe_grid.svg'
 import {Minus, Plus, ShoppingCart} from 'phosphor-react'
-
-
+import { Notifications } from '../context/Notifications';
 
 
 export function Card() {
 
+   const {handleNotification} = useContext(Notifications)
+
+
+   const [count, setCount] = useState(0)
+
+   
+
+   function handleClickAdd() {
+    setCount(count + 1)
+   }
+
+   function handleClickRemove() {
+    if(count == 0) return
+    setCount(count - 1)
+   }
 
    return (
        <div className='flex flex-col justify-center items-center w-[240px] mt-8 bg-base-card rounded-tr-3xl rounded-bl-3xl'>
@@ -20,12 +35,12 @@ export function Card() {
                    <p className='text-base-text'>R$</p><span className='font-baloo-2 text-3xl font-extrabold'>9,90</span>
                </div>
                <div className='flex justify-between items-center p-2 gap-1 rounded-md bg-base-button'>
-                   <p><Minus className='text-purple' size={14} weight="bold" /></p>
-                   <p className='text-base-title text-base'>1</p>
-                   <p><Plus className='text-purple' size={14} weight="bold" /></p>
+                   <p><Minus onClick={handleClickRemove} className='text-purple cursor-pointer' size={14} weight="bold" /></p>
+                   <p className='text-base-title text-base'>{count}</p>
+                   <p><Plus onClick={handleClickAdd} className='text-purple cursor-pointer' size={14} weight="bold" /></p>
                </div>
-               <div className='flex justify-center items-center p-2 rounded-md bg-purple-dark'>
-               <ShoppingCart className='fill-white' size={22} weight="fill" />
+               <div className='flex justify-center items-center p-2 cursor-pointer rounded-md bg-purple-dark'>
+               <ShoppingCart onClick={handleNotification} className='fill-white' size={22} weight="fill" />
                </div>
            </div>
        </div>

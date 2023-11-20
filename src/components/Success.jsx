@@ -6,8 +6,6 @@ export function Success() {
 
     return (
         <>
-            <Header />
-
             <main className="flex justify-between px-40 mt-20">
                 <div className="flex flex-col gap-10 ">
 
