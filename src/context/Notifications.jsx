@@ -4,6 +4,7 @@ export const Notifications = createContext()
 
 export const NotificationProvider = ({children}) => {
     const [notification, setNotification] = useState(0)
+    const [checkoutItens, setCheckoutItens] = useState([])
 
     const scrollToTop = () => {
         window.scrollTo({
@@ -17,8 +18,23 @@ export const NotificationProvider = ({children}) => {
         scrollToTop()
     }
 
+    const handleCheckoutItens = (id, title, price, img) => {
+        setCheckoutItens([...checkoutItens, {
+            id: id,
+            title: title,
+            price: price,
+            img: img
+        }])
+    }
+
     return (
-        <Notifications.Provider value={{notification, handleNotification}} >
+        <Notifications.Provider value={{
+                notification,
+                handleNotification,
+                checkoutItens,
+                handleCheckoutItens
+            }} 
+        >
             {children}
         </Notifications.Provider>
     )     

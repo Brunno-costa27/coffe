@@ -1,10 +1,16 @@
 import { MapPinLine, CurrencyDollar, CreditCard, Bank, Money } from "phosphor-react";
-import { Header } from "./Header";
 import coffe from '../assets/coffe_grid.svg'
 import line from '../assets/line.svg'
 import {Minus, Plus, Trash} from 'phosphor-react'
+import { useContext } from 'react';
+import { Notifications } from '../context/Notifications';
+
+
 
 export function Checkout() {
+
+   const {checkoutItens} = useContext(Notifications)
+
 
    return (
        <>
@@ -105,64 +111,47 @@ export function Checkout() {
                 </div>
 
                <div className="p-10 bg-base-card w-[50%] h-4/5 rounded-tr-[44px] rounded-bl-[44px]">
-                    <div className="p-2">
-                        <div className="flex justify-between">
-                            <div className="flex gap-5 justify-between items-center">
-                                <img className="w-[64px]" src={coffe} alt="" />
-                                <div className='flex flex-col gap-2'>
-                                    <p className="text-base text-base-subtitle">Expresso Tradicional</p>
-                                    <div className="flex gap-2 m-0">
-                                        <div className="flex justify-between items-center p-2 gap-1 rounded-md bg-base-button">
-                                            <p><Minus className='text-purple' size={14} weight="bold" /></p>
-                                            <p className='text-base-title text-base'>1</p>
-                                            <p><Plus className='text-purple' size={14} weight="bold" /></p>
-                                        </div>
-                                        <div className='flex justify-center items-center p-2 rounded-md bg-base-button'>
-                                            <Trash className="text-purple" size={16} />
-                                            <p className="text-xs text-base-text uppercase">Remover</p>
+                    
+                   {checkoutItens.length > 0 ? (
+                   <div>
+                        {checkoutItens.map(checkoutItem => {
+                        return (<>
+                            <div className="p-2">
+                                <div className="flex justify-between">
+                                    <div className="flex gap-5 justify-between items-center">
+                                        <img className="w-[64px]" src={checkoutItem.img} alt="" />
+                                        <div className='flex flex-col gap-2'>
+                                            <p className="text-base text-base-subtitle">{checkoutItem.title}</p>
+                                            <div className="flex gap-2 m-0">
+                                                <div className="flex justify-between items-center p-2 gap-1 rounded-md bg-base-button">
+                                                    <p><Minus className='text-purple' size={14} weight="bold" /></p>
+                                                    <p className='text-base-title text-base'>1</p>
+                                                    <p><Plus className='text-purple' size={14} weight="bold" /></p>
+                                                </div>
+                                                <div className='flex justify-center items-center p-2 rounded-md bg-base-button'>
+                                                    <Trash className="text-purple" size={16} />
+                                                    <p className="text-xs text-base-text uppercase">Remover</p>
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </div>
+                                            <div className="flex m-0">
+                                                <p className="text-base font-bold text-base-text">{checkoutItem.price}</p>
+                                            </div>
 
                                 </div>
-                            </div>
-                                    <div className="flex m-0">
-                                        <p className="text-base font-bold text-base-text">R$ 9,90</p>
-                                    </div>
-
                         </div>
+
+                        <img className="mt-6 mb-6" src={line} alt="" />
+                        
+                        </>)
+                    })}
                     </div>
+                   ): (
+                    <h1 className="flex justify-center items-center font-bold text-xl">Nenhum item no carrinho</h1>
+                   )} 
 
-                    <img className="mt-6 mb-6" src={line} alt="" />
-
-                    <div className="p-2">
-                        <div className="flex justify-between">
-                            <div className="flex gap-5 justify-between items-center">
-                                <img className="w-[64px]" src={coffe} alt="" />
-                                <div className='flex flex-col gap-2'>
-                                    <p className="text-base text-base-subtitle">Expresso Tradicional</p>
-                                    <div className="flex gap-2 m-0">
-                                        <div className="flex justify-between items-center p-2 gap-1 rounded-md bg-base-button">
-                                            <p><Minus className='text-purple' size={14} weight="bold" /></p>
-                                            <p className='text-base-title text-base'>1</p>
-                                            <p><Plus className='text-purple' size={14} weight="bold" /></p>
-                                        </div>
-                                        <div className='flex justify-center items-center p-2 rounded-md bg-base-button'>
-                                            <Trash className="text-purple" size={16} />
-                                            <p className="text-xs text-base-text uppercase">Remover</p>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <div className="flex m-0">
-                                <p className="text-base font-bold text-base-text">R$ 9,90</p>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <img className="mt-6 mb-6" src={line} alt="" />
 
                    <div className="flex flex-col gap-3">
                         <div className="flex justify-between items-center">
