@@ -1,5 +1,4 @@
 import { useContext, useState } from 'react'
-import coffe from '../assets/coffe_grid.svg'
 import {Minus, Plus, ShoppingCart} from 'phosphor-react'
 import { Notifications } from '../context/Notifications';
 
@@ -30,7 +29,7 @@ export function Card({id, title, img, price, onClick}) {
    console.log(checkoutItens);
 
    return (
-       <div  className='flex flex-col justify-center items-center w-[240px] mt-8 bg-base-card rounded-tr-3xl rounded-bl-3xl'>
+       <div  className='w-full flex flex-col justify-center items-center w-[240px] mt-8 bg-base-card rounded-tr-3xl rounded-bl-3xl'>
            <img className='-mt-[20px]' src={img} alt="" />
            <p className='mt-3 py-1 px-2 rounded-full text-[10px] font-bold text-yellow-dark bg-yellow-light'>TRADICIONAL</p>
            <p className='font-baloo-2 mt-4 text-[20px]'>{title}</p>

@@ -33,9 +33,11 @@ export function Header() {
 
                 <div onClick={handleRedirectCheckout} className='flex relative justify-center items-center cursor-pointer p-2 bg-yellow-light rounded-md'>
                     <ShoppingCart className='fill-yellow-dark' size={22} weight="fill" />
-                    <div className='absolute -top-2 -right-2 bg-yellow-dark w-5 h-5 rounded-full flex items-center justify-center text-xs'>
-                        <p className='text-white font-bold text-xs'>{notification}</p>
-                    </div>
+                        {notification > 0 && 
+                            <div className='absolute -top-2 -right-2 bg-yellow-dark w-5 h-5 rounded-full flex items-center justify-center text-xs'>
+                                <p className='text-white font-bold text-xs'>{notification}</p>
+                            </div>
+                        }
                 </div>
                 
             </div>

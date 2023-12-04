@@ -1,8 +1,7 @@
 import { MapPinLine, CurrencyDollar, CreditCard, Bank, Money } from "phosphor-react";
-import coffe from '../assets/coffe_grid.svg'
 import line from '../assets/line.svg'
 import {Minus, Plus, Trash} from 'phosphor-react'
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Notifications } from '../context/Notifications';
 
 
@@ -11,6 +10,35 @@ export function Checkout() {
 
    const {checkoutItens} = useContext(Notifications)
 
+   const [isStyled, setIsStyled] = useState(false);
+   const [isStyledInput, setIsStyledInput] = useState(false);
+
+
+    const handleButtonClick = () => {
+        // Inverte o estado ao clicar no botão
+        setIsStyled(!isStyled);
+    };
+
+    const handleInputClick = () => {
+        // Inverte o estado ao clicar no botão
+        setIsStyledInput(!isStyledInput);
+    };
+
+    const handleClearForm = () => {
+        // Inverte o estado ao clicar no botão
+        if(isStyledInput) {
+            setIsStyledInput(false);
+        }
+    };
+
+    const handleClearButton = () => {
+        // Inverte o estado ao clicar no botão
+        if(isStyled) {
+            setIsStyled(false);
+        }
+    };
+
+    console.log(isStyledInput)
 
    return (
        <>
@@ -25,9 +53,10 @@ export function Checkout() {
                        </p>
                        </p>
 
-                       <form className="flex flex-col mt-8 gap-4" action="">
+                       <form onClick={handleClearForm} className="flex flex-col mt-8 gap-4" action="">
                            <input
-                               className="w-[188px] p-3 rounded bg-base-input border-2 border-base-button "                           
+                               onClick={handleInputClick}
+                               className={`w-[188px] p-3 rounded bg-base-input border-2  ${isStyledInput ? 'border-yellow-dark' : 'border-base-button'}`}                           
                                type="text"
                                placeholder="CEP"
                             />
@@ -82,7 +111,7 @@ export function Checkout() {
 
                    </div>
 
-                   <div className="flex flex-col p-10 bg-base-card rounded-md gap-8">
+                   <div onClick={handleClearButton} className="flex flex-col p-10 bg-base-card rounded-md gap-8">
                         <div className="flex">
                                 <CurrencyDollar className="text-purple" size={22} />
                                 <p className="text-base text-base-subtitle">Pagamento
@@ -92,17 +121,19 @@ export function Checkout() {
                         </div>
                     
                         <div className="flex justify-between items-center gap-3">
-                            <div className="flex gap-3 justify-center items-center bg-base-button p-3 rounded-md">
+                            <div onClick={handleButtonClick}
+                                 className={`flex gap-3 justify-center items-center bg-base-button p-3 rounded-md hover:cursor-pointer ${isStyled ? 'bg-purple-light border-2 border-purple' : 'hover:bg-base-hover'}`}
+                            >
                                 <CreditCard className="text-purple" size={16} />
                                 <p className="text-base-text text-xs uppercase">Cartão de crédito</p>
                             </div>
                             
-                            <div className="flex gap-3 justify-center items-center bg-base-button p-3 rounded-md">
+                            <div className="flex gap-3 justify-center items-center bg-base-button p-3 rounded-md hover:bg-base-hover hover:cursor-pointer">
                                 <Bank className="text-purple"  size={16} />
                                 <p  className="text-base-text text-xs uppercase">Cartão de débito</p>
                             </div>
 
-                            <div className="flex gap-3 justify-center items-center bg-base-button p-3 rounded-md">
+                            <div className="flex gap-3 justify-center items-center bg-base-button p-3 rounded-md hover:bg-base-hover hover:cursor-pointer">
                                 <Money className="text-purple"  size={16} />
                                 <p  className="text-base-text text-xs uppercase">Dinheiro</p>
                             </div>
@@ -128,9 +159,9 @@ export function Checkout() {
                                                     <p className='text-base-title text-base'>1</p>
                                                     <p><Plus className='text-purple' size={14} weight="bold" /></p>
                                                 </div>
-                                                <div className='flex justify-center items-center p-2 rounded-md bg-base-button'>
+                                                <div className='flex justify-center items-center p-2 gap-1 rounded-md bg-base-button hover:bg-base-hover'>
                                                     <Trash className="text-purple" size={16} />
-                                                    <p className="text-xs text-base-text uppercase">Remover</p>
+                                                    <p className="text-xs text-base-text uppercase hover:text-base-subtitle">Remover</p>
                                                 </div>
                                             </div>
 
@@ -170,7 +201,7 @@ export function Checkout() {
                         </div>
                    </div>
 
-                   <div className="flex justify-center items-center px-2 py-3 mt-6 bg-yellow rounded-md">
+                   <div className="flex justify-center items-center px-2 py-3 mt-6 bg-yellow rounded-md hover:bg-yellow-dark">
                         <button className="text-white text-sm font-bold uppercase">Confirmar pedido</button>
                    </div>
                </div>
